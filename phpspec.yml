@@ -1,0 +1,6 @@
+formatter.name: pretty
+suites:
+   uspdev_suite:
+       namespace:  Uspdev\Nfe
+       psr4_prefix:  Uspdev\Nfe
+       src_path:  src/ 

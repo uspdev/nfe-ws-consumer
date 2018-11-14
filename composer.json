@@ -1,0 +1,24 @@
+{
+    "name": "uspdev/nfe-ws-consumer",
+    "description": "API para consumir dados de uspdev/nfe-ws",
+    "type": "library",
+    "license": "GPL-V3",
+    "authors": [
+        {
+            "name": "Masaki Kawabata Net",
+            "email": "kawabata@usp.br"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Uspdev\\Nfe\\": "src/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^5.1"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
