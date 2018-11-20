@@ -2,7 +2,7 @@
     "name": "uspdev/nfe-ws-consumer",
     "description": "API para consumir dados de uspdev/nfe-ws",
     "type": "library",
-    "license": "GPL-V3",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Masaki Kawabata Net",
