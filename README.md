@@ -24,7 +24,7 @@ Dessa forma a consulta da validade de um XML bem como a geração de sua DANFE �
 include '../vendor/autoload.php';
 use Uspdev\Nfe\NfeWsConsumer;
 
-$srv = 'http://servidor.eesc.usp.br/nfe-ws/api/';
+$srv = 'http://servidor.eesc.usp.br/nfe-ws/api/v1/';
 $apiKey = 'sua-api-key-aqui';
 $xml = file_get_contents('nfe.xml');
 
@@ -33,6 +33,8 @@ $ret = $sefaz->consultaXML($xml);
 
 print_r($ret);
 ```
+
+> **Versão da API (`$srv`):** Configure `$srv` incluindo o prefixo da versão desejada (ex.: `.../api/v1/`). Caso `$srv` aponte para `.../api/` sem versão, apenas `status()` funcionará (em `modo de compatibilidade`), informando `versao_corrente` com a versão mais recente para a qual `$srv` deve ser atualizado.
 
 Resposta
 ```
@@ -212,7 +214,7 @@ public function status(): array|string|false
 Verifica a conectividade com o webservice e a validade do certificado digital ICP-Brasil instalado no servidor em formato JSON/array.
 
 * **Retorno:**
-  * `array`: Dados estruturados contendo `status`, `cnpj`, `empresa`, `validade`, `valid_to`, `expirado` e `mensagem`.
+  * `array`: Dados estruturados contendo `status`, `cnpj`, `empresa`, `validade`, `valid_to`, `expirado`, `mensagem`, `versao_em_uso` e `versao_corrente` (além de `modo_compatibilidade => true` quando `$srv` não inclui versão).
   * `false`: Falha de comunicação.
 
 ```php
@@ -220,7 +222,7 @@ $sefaz = new NfeWsConsumer($srv, $apiKey);
 $status = $sefaz->status();
 
 print_r($status);
-/* Exemplo de saída:
+/* Exemplo de saída (com $srv apontando para .../api/v1/):
 Array
 (
     [status] => ok
@@ -230,6 +232,8 @@ Array
     [valid_to] => 2027-02-11T12:00:00+00:00
     [expirado] => false
     [mensagem] => Certificado VÁLIDO!
+    [versao_em_uso] => v1
+    [versao_corrente] => v1
 )
 */
 ```
